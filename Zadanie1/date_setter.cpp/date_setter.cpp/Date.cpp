@@ -1,6 +1,8 @@
 #include "Date.h"
 #include <string>
 
+using std::string; 
+
 Date::Date(int day, myMonth month, int year) {
 	if (isValidDate(day, month, year)) {
 		Day = day;
@@ -20,14 +22,14 @@ void Date::setDay(int day) {
 		Day = day;
 	};
 }
-int Date::getDay() {
+int Date::getDay() const {
 	return Day;
 }
 void Date::setMonth(myMonth month) {
 	Month = month;
 }
 
-myMonth Date::getMonth() {
+myMonth Date::getMonth() const {
 	return Month;
 }
 void Date::setYear(int year) {
@@ -42,17 +44,21 @@ string Date::PrintDate() {
 }
 
 bool Date::isValidDate(int day, myMonth month, int year) {
+	
 	for (int i = 1; i < 13; i= i+2) {
-	if (static_cast<int>(month) == 2) {
-		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+	if (month == myMonth::luty) {
+	// int nmonth = static_cast<int>(month); raz rzutowaæ
+	// if (nmonth == 2) {
+			if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
 			if (day > 29) {
 				return false;
 			}
-			else if (day > 28) {
+			else if (day > 28) { // cos nie tak z warunkami do czego else?
 				return false;
 			}
-		}
-	}
+		} // koniec rok przestêpny
+		// ????? brak zwracanej wartoœci
+	} // koniec luty
 	else if (static_cast<int>(month) == 1 || static_cast<int>(month) == 3 || static_cast<int>(month) == 5 || static_cast<int>(month) == 7 || static_cast<int>(month) == 8 || static_cast<int>(month) == 10 || static_cast<int>(month) == 12) {
 		if (day > 31) {
 			return false;

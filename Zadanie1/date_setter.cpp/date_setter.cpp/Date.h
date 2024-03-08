@@ -1,6 +1,7 @@
 #pragma once
-#include <iostream>;
-using std::string;
+#include <iostream>
+
+// using std::string;  << nie ¿ywaæ w plikach nag³ówkowych
 
 enum class myMonth {
 	styczen = 1,
@@ -27,17 +28,17 @@ private:
 public:
 	Date(int day, myMonth month, int year);
 	void setDay(int day);
-	int getDay();
+	int getDay() const;
 	void setMonth(myMonth month);
-	myMonth getMonth();
+	myMonth getMonth() const;
 	void setYear(int year);
 	int getYear();
 
-	string PrintDate();
+	std::string PrintDate();
 	//void StringDate();
 	bool isValidDate(int day, myMonth month, int year);
 
-	string monthToString(myMonth month);
-	string printWordDate();
+	std::string monthToString(myMonth month);
+	std::string printWordDate();
 };
 

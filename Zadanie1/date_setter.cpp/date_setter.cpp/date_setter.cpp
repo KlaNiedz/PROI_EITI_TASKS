@@ -27,6 +27,7 @@ int main()
     std::cout << first_date.getDay() << std::endl;
     std::cout << "Wordly Date: " << first_date.printWordDate() << std::endl;
 
+    // dodać więcej przykładów prawidłowe/nieprawidłowe daty
 	
 	return 0;
 }
