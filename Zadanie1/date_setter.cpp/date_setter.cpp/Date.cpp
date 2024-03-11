@@ -37,21 +37,27 @@ int Date::getYear() {
 	return Year;
 }
 string Date::PrintDate() {
+	if (!isValidDate(Day, Month, Year)) {
+		return "Cannot print - invalid data";
+	}
+	else if (static_cast<int>(getMonth()) < 10) {
+		return std::to_string(Day) + "/0" + std::to_string(static_cast<int>(Month)) + "/" + std::to_string(Year);
+	}
 	return std::to_string(Day) + "/" + std::to_string(static_cast<int>(Month)) + "/" + std::to_string(Year);
 
 }
 
 bool Date::isValidDate(int day, myMonth month, int year) {
-	for (int i = 1; i < 13; i= i+2) {
 	if (static_cast<int>(month) == 2) {
 		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
 			if (day > 29) {
 				return false;
 			}
-			else if (day > 28) {
-				return false;
-			}
 		}
+		else if (day > 28) {
+			return false;
+		}
+		
 	}
 	else if (static_cast<int>(month) == 1 || static_cast<int>(month) == 3 || static_cast<int>(month) == 5 || static_cast<int>(month) == 7 || static_cast<int>(month) == 8 || static_cast<int>(month) == 10 || static_cast<int>(month) == 12) {
 		if (day > 31) {
@@ -63,7 +69,6 @@ bool Date::isValidDate(int day, myMonth month, int year) {
 	}
 		return true;
 	}
-}
 
 string Date::monthToString(myMonth month){
 	switch (month)
