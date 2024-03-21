@@ -22,11 +22,18 @@ int main()
 {
     Date first_date(20, myMonth::kwiecien, 2020);
     first_date.setDay(30);
-    //first_date.StringDate();
+    std::cout << "Month: " << first_date.monthToString(first_date.getMonth()) << std::endl;
     std::cout << "Formatted Date: " << first_date.PrintDate() << std::endl;
     std::cout << first_date.getDay() << std::endl;
     std::cout << "Wordly Date: " << first_date.printWordDate() << std::endl;
 
-	
-	return 0;
+    Date invalid_date_1(31, myMonth::kwiecien, 2020);
+    std::cout << "Formatted Date: " << invalid_date_1.PrintDate() << std::endl;
+    Date invalid_date_2(29, myMonth::luty, 2025);
+    std::cout << "Formatted Date: " << invalid_date_2.PrintDate() << std::endl;
+
+
+
+    return 0;
 }
+

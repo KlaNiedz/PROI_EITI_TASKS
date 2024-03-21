@@ -24,6 +24,7 @@
     <ProjectGuid>{5a40d363-e390-49fe-9693-8ac318dce93d}</ProjectGuid>
     <RootNamespace>datesettercpp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>date_setter</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
