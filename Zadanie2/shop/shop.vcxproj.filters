@@ -24,7 +24,7 @@
     <ClCompile Include="Product.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Zadanie1\date_setter.cpp\date_setter.cpp\Date.cpp">
+    <ClCompile Include="..\..\Zadanie1\date_setter.cpp\date_setter.cpp\Date.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>;
+#include <iostream>
 #include "/Users/msi/source/repos/PROI/Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
 class Product
 {

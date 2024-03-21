@@ -1,6 +1,6 @@
 #include "Date.h"
 #include <string>
-#include "../../../Zadanie2/shop/UnitTest1/pch.h"
+
 
 Date::Date(int day, myMonth month, int year) {
 	if (isValidDate(day, month, year)) {
