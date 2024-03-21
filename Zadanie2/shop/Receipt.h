@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include "../../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
+#include "../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
 #include "Product.h"
 
 class Receipt
