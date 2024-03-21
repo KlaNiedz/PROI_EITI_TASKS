@@ -1,5 +1,6 @@
 #include "Date.h"
 #include <string>
+#include "../../../Zadanie2/shop/UnitTest1/pch.h"
 
 Date::Date(int day, myMonth month, int year) {
 	if (isValidDate(day, month, year)) {
@@ -11,6 +12,8 @@ Date::Date(int day, myMonth month, int year) {
 		std::cout << "Invalid date" << std::endl;
 	}
 }
+
+//Date::Date() : Day(1), Month(myMonth::styczen), Year(2022) {}
 
 void Date::setDay(int day) {
 	if (!isValidDate(day, Month, Year)) {

@@ -26,6 +26,7 @@ private:
 	int Year;
 public:
 	Date(int day, myMonth month, int year);
+	Date(): Day(1), Month(myMonth::styczen), Year(2022){}
 	void setDay(int day);
 	int getDay();
 	void setMonth(myMonth month);
