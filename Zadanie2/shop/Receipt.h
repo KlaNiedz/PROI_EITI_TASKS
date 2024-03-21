@@ -16,4 +16,7 @@ public:
 	void setShopName(std::string shop_name);
 	std::string getShopName();
 	void addProduct(Product produkt);
+	std::vector<Product> getProducts();
+	int getNumberOfProducts();
+	//void deleteProduct(Product produkt);
 };

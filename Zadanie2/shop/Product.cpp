@@ -9,3 +9,6 @@ Product::Product(const char* name, int amount, std::string producer, int product
 	ProductNumber = product_number;
 	EatByDate = eatbydate;
 }
+string Product::getName(){
+	return Name;
+}

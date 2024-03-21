@@ -11,5 +11,6 @@ private:
 	Date EatByDate;
 public:
 	Product(const char* name, int amount, std::string producer, int product_number, Date eatbydate);
+	string getName();
 };
 
