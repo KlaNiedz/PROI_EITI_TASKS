@@ -27,6 +27,10 @@ void Receipt::addProduct(Product product) {
 	Products.push_back(product);
 }
 
+//void Receipt::deleteProdust(Product product) {
+//	Products
+//}
+
 
 //bool Receipt::isValidReceipt(std::string nazwa_sklepu, int date, std::vector<std::string>produkty) {
 //	

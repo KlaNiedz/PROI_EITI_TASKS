@@ -5,6 +5,8 @@
 #include "../../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace ;
+
 
 namespace UnitTest1
 {
