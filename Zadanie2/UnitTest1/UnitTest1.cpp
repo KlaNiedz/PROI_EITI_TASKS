@@ -1,11 +1,8 @@
-#include "pch.h"
 #include "CppUnitTest.h"
-#include "../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
-#include "../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.cpp"
+
+#include "../../Zadanie1/Date.h"
 #include "../shop/Product.h"
 #include "../shop/Receipt.h"
-#include "../shop/Receipt.cpp"
-#include "../shop/Product.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
