@@ -1,7 +1,7 @@
 #include "Receipt.h"
 #include <vector>
 #include <typeinfo>
-#include "../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
+#include "../../Zadanie1/Date.h"
 #include "Product.h"
 
 

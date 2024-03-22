@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Zadanie1\date_setter.cpp\date_setter.cpp\Date.cpp" />
+    <ClCompile Include="..\..\Zadanie1\Date.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Receipt.cpp" />
     <ClCompile Include="shop.cpp" />

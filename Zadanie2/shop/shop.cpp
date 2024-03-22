@@ -5,7 +5,7 @@
 #include <algorithm> 
 #include "Receipt.h"
 #include "Product.h"
-#include "../../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
+#include "../../Zadanie1/Date.h"
 
 int main()
 {
