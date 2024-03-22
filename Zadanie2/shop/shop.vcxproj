@@ -129,11 +129,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Zadanie1\Date.cpp" />
+    <ClCompile Include="Amount.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Receipt.cpp" />
     <ClCompile Include="shop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Amount.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Product.h" />
     <ClInclude Include="Receipt.h" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include "Receipt.h"
 #include <vector>
 #include <typeinfo>
+#include <algorithm>
 #include "../../Zadanie1/Date.h"
 #include "Product.h"
 
@@ -24,6 +25,12 @@ string Receipt::getShopName() {
 
 
 void Receipt::addProduct(Product product) {
+	for (Product element : Products) {
+		if (element.getName() == product.getName()) {
+			throw "You can't duplicate products!";
+
+		}
+	}
 	Products.push_back(product);
 }
 
@@ -34,6 +41,18 @@ std::vector<Product> Receipt::getProducts() {
 int Receipt::getNumberOfProducts() {
 	return Products.size();
 }
+
+std::string Receipt::getSpecificProduct(std::string product) {
+	for (Product element : Products) {
+		if (element.getName() == product) {
+			return "There is a product named: " + product;
+	
+		}
+		
+	}
+}
+
+
 //void Receipt::deleteProduct(Product product) {
 //	std::remove(Products.begin(), Products.end(), product.getName());
 //}

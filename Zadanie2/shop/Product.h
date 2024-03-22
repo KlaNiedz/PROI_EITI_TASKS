@@ -1,16 +1,19 @@
 #pragma once
 #include <iostream>
+#include <string>
+#include "Amount.h"
 #include "../../Zadanie1/Date.h"
+
 class Product
 {
 private:
 	std::string Name;
-	int Amount;
+	Amount Prices;
 	std::string Producer;
-	std::string ProductNumber;
+	int ProductNumber;
 	Date EatByDate;
 public:
-	Product(const char* name, int amount, std::string producer, int product_number, Date eatbydate);
-	string getName();
+	Product(const char* name, Amount prices, std::string producer, int product_number, Date eatbydate);
+	std::string getName();
 };
 

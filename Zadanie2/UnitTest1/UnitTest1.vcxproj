@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Zadanie1\Date.cpp" />
+    <ClCompile Include="..\shop\Amount.cpp" />
     <ClCompile Include="..\shop\Product.cpp" />
     <ClCompile Include="..\shop\Receipt.cpp" />
     <ClCompile Include="UnitTest1.cpp" />

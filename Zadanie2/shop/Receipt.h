@@ -18,5 +18,6 @@ public:
 	void addProduct(Product produkt);
 	std::vector<Product> getProducts();
 	int getNumberOfProducts();
+	std::string getSpecificProduct(std::string product);
 	//void deleteProduct(Product produkt);
 };
