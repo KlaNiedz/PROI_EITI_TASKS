@@ -13,8 +13,6 @@ Date::Date(int day, myMonth month, int year) {
 	}
 }
 
-//Date::Date() : Day(1), Month(myMonth::styczen), Year(2022) {}
-
 void Date::setDay(int day) {
 	if (!isValidDate(day, Month, Year)) {
 		std::cout << "Invalid date" << std::endl; 

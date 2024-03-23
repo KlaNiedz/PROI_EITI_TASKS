@@ -8,57 +8,68 @@
 #include "Amount.h"
 #include "../../Zadanie1/Date.h"
 
-int main()
+
+int main(int argc, char* argv[])
 {
-    Date date_shop(20, myMonth::kwiecien, 2020);
-    Date eatbydate1(29, myMonth::kwiecien, 2020);
-
-    std::vector<Product> products;
-    Receipt FirstReceipt("Jan", date_shop, products);
-
-
     try {
-        Amount bread_amount(5.20, 2, "piece");
-        Product bread("bread", bread_amount, "goszczynski", 72, eatbydate1);
-        FirstReceipt.addProduct(bread);
-        std::cout<<date_shop.PrintDate()<<std::endl;
-        std::cout << eatbydate1.PrintDate() << std::endl;
+        if (argc < 14) {
+            throw std::invalid_argument("Usage: shop_name shop_day shop_month shop_year eatby_day eatby_month eatby_year amount_price amount_number amount_unit product_name product_producer product_number");
+
+        }
+
+        std::string shop_name = argv[1];
+        int shop_day = std::stoi(argv[2]);
+        myMonth shop_month = static_cast<myMonth>(std::stoi(argv[3]));
+        int shop_year = std::stoi(argv[4]);
+        Date date_shop(shop_day, shop_month, shop_year);
+
+       
+        //Creating list of products
+        std::vector<Product> products;
+        for (int i = 5; i < argc; i += 9) {
+            int eatby_day = std::stoi(argv[i]);
+            myMonth eatby_month = static_cast<myMonth>(std::stoi(argv[i + 1]));
+            int eatby_year = std::stoi(argv[i+2]);
+            Date eatbydate(eatby_day, eatby_month, eatby_year);
+            double amount_price = std::stod(argv[i+3]);
+            double amount_number = std::stod(argv[i + 4]);
+            std::string amount_unit = argv[i + 5];
+            Amount amount(amount_price, amount_number, amount_unit);
+
+            std::string product_name = argv[i + 6];
+            std::string product_producer = argv[i + 7];
+            int product_number = std::stoi(argv[i + 8]);
+
+            Product product(product_name.c_str(), amount, product_producer, product_number, eatbydate);
+            products.push_back(product);
+        }
+
+        //Creating a Receipt object and adding product to it
+        Receipt receipt(shop_name, date_shop, products);
+
+        std::cout << "Sum of prices: " << receipt.getPriceSum() << std::endl;
+
+        //Printing out receipt
+        for (Product element : receipt.getProducts()) {
+            std::cout << element << std::endl;
+        }
 
     }
-    catch (const char * unitException) {
-        std::cout << "Exception: " << unitException << std::endl;
+    catch (const std::invalid_argument& e) {
+        std::cerr << "Invalid argument: " << e.what() << std::endl;
+        return 1; 
     }
-
-    Date eatbydate2(22, myMonth::kwiecien, 2020);
-    Amount apple_amount(1.98, 1.5, "kg");
-    Product apple("apple", apple_amount, "biedronka", 23, eatbydate2);
-
-    FirstReceipt.addProduct(apple);
-    for (Product element : FirstReceipt.getProducts()) {
-        std::cout << element.getName() << std::endl;
+    catch (const DuplicateProductException& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        return 1;
     }
-    std::cout << apple.getName() << std::endl;
- 
-   // FirstReceipt.deleteProduct(apple);
-    for (Product element : products) {
-        std::cout << element.getName() << std::endl;
-    }
-
-    int size = FirstReceipt.getNumberOfProducts();
-    std::cout << "Number of products bought: " << size << std::endl;
-
-    std::string spec_prod = FirstReceipt.getSpecificProduct("apple");
-    std::cout << spec_prod << std::endl;
-    
-    try {
-        Date eatbydate3(4, myMonth::maj, 2021);
-        Amount apple2_amount(2, 1.2, "kg");
-        Product apple2("apple", apple2_amount, "biedronka", 23, eatbydate3);
-        FirstReceipt.addProduct(apple2);
-    }
-    catch (const char * addException) {
-        std::cout << "Exception: " << addException << std::endl;
+    catch (const WrongUnitException& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        return 1;
     }
     return 0;
 }
+
+
+
 

@@ -4,6 +4,13 @@
 #include "../../Zadanie1/Date.h"
 #include "Product.h"
 
+class DuplicateProductException : public std::exception {
+public:
+	const char* what() const noexcept override {
+		return "You can't duplicate products!";
+	}
+};
+
 class Receipt
 {
 private:
@@ -19,5 +26,6 @@ public:
 	std::vector<Product> getProducts();
 	int getNumberOfProducts();
 	std::string getSpecificProduct(std::string product);
-	//void deleteProduct(Product produkt);
+	void deleteProduct(std::string produkt);
+	double getPriceSum();
 };
