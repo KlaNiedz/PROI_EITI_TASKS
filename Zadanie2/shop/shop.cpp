@@ -48,6 +48,8 @@ int main(int argc, char* argv[])
         Receipt receipt(shop_name, date_shop, products);
 
         std::cout << "Sum of prices: " << receipt.getPriceSum() << std::endl;
+        int size = receipt.getNumberOfProducts();
+        std::cout << "Number of products bought: " << size << std::endl;
 
         //Printing out receipt
         for (Product element : receipt.getProducts()) {
