@@ -38,6 +38,8 @@ void Product::setProductNumber(int product_number) {
 	ProductNumber = product_number;
 }
 
+
+
 std::ostream& operator<<(std::ostream& COUT, Product& product)
 {
 	COUT << "Name of product: " << product.Name << std::endl;
@@ -45,7 +47,7 @@ std::ostream& operator<<(std::ostream& COUT, Product& product)
 	COUT << "Producer: " << product.Producer << std::endl;
 	COUT << "Produkt number: " << product.ProductNumber << std::endl;
 	COUT << "Expiry date: " << product.EatByDate.PrintDate() << std::endl;
-	COUT << "Amount of product: " << product.Prices.getNumber() << product.Prices.getUnit() << std::endl;
-	COUT << "Price for " << product.Prices.getUnit()<< ": " << product.Prices.getPrice() << std::endl;
+	COUT << "Amount of product: " << product.Prices.getNumber() << product.Prices.getWeight().unitToString() << std::endl;
+	COUT << "Price for " << product.Prices.getWeight().unitToString() << ": " << product.Prices.getPrice() << std::endl;
 	return COUT;
 }

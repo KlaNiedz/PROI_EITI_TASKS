@@ -6,14 +6,49 @@
 #include "Receipt.h"
 #include "Product.h"
 #include "Amount.h"
+#include "Weight.h"
+#include "Price.h"
 #include "../../Zadanie1/Date.h"
 
+
+myUnit stringToUnit(const std::string& unitStr) {
+    if (unitStr == "kg") {
+        return myUnit::kg;
+    }
+    else if (unitStr == "piece") {
+        return myUnit::piece;
+    }
+    else if (unitStr == "g") {
+        return myUnit::g;
+    }
+    else {
+        // Obsługa nieznanej jednostki lub błąd
+        throw std::invalid_argument("Unknwon unit: " + unitStr);
+    }
+}
+
+myCurrency stringToCurrency(const std::string& currencyStr) {
+    if (currencyStr == "PLN") {
+        return myCurrency::PLN;
+    }
+    else if (currencyStr == "USD") {
+        return myCurrency::USD;
+    }
+    else if (currencyStr == "EUR") {
+        return myCurrency::EUR;
+    }
+    else {
+        // Obsługa nieznanej jednostki lub błąd
+        throw std::invalid_argument("Unknwon currency: " + currencyStr);
+    }
+}
 
 int main(int argc, char* argv[])
 {
     try {
-        if (argc < 14) {
-            throw std::invalid_argument("Usage: shop_name shop_day shop_month shop_year eatby_day eatby_month eatby_year amount_price amount_number amount_unit product_name product_producer product_number");
+
+        if (argc < 15) {
+            throw std::invalid_argument("Usage: shop_name shop_day shop_month shop_year eatby_day eatby_month eatby_year amount_price currency amount_number amount_unit product_name product_producer product_number");
 
         }
 
@@ -26,19 +61,24 @@ int main(int argc, char* argv[])
        
         //Creating list of products
         std::vector<Product> products;
-        for (int i = 5; i < argc; i += 9) {
+        for (int i = 5; i < argc; i += 10) {
             int eatby_day = std::stoi(argv[i]);
             myMonth eatby_month = static_cast<myMonth>(std::stoi(argv[i + 1]));
             int eatby_year = std::stoi(argv[i+2]);
             Date eatbydate(eatby_day, eatby_month, eatby_year);
-            double amount_price = std::stod(argv[i+3]);
-            double amount_number = std::stod(argv[i + 4]);
-            std::string amount_unit = argv[i + 5];
-            Amount amount(amount_price, amount_number, amount_unit);
+            double price_number = std::stod(argv[i+3]);
+            std::string price_currency = argv[i + 4];
+            myCurrency converted_currency = stringToCurrency(price_currency);
+            double amount_number = std::stod(argv[i + 5]);
+            std::string amount_unit = argv[i + 6];
+            myUnit amount_unit_converted = stringToUnit(amount_unit);
+            Weight WeightOfProd(amount_number, amount_unit_converted);
+            Price PriceOfProd(price_number, converted_currency);
+            Amount amount(PriceOfProd, WeightOfProd);
 
-            std::string product_name = argv[i + 6];
-            std::string product_producer = argv[i + 7];
-            int product_number = std::stoi(argv[i + 8]);
+            std::string product_name = argv[i + 7];
+            std::string product_producer = argv[i + 8];
+            int product_number = std::stoi(argv[i + 9]);
 
             Product product(product_name.c_str(), amount, product_producer, product_number, eatbydate);
             products.push_back(product);
@@ -65,10 +105,10 @@ int main(int argc, char* argv[])
         std::cerr << "Exception: " << e.what() << std::endl;
         return 1;
     }
-    catch (const WrongUnitException& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-        return 1;
-    }
+    //catch (const WrongUnitException& e) {
+    //    std::cerr << "Exception: " << e.what() << std::endl;
+    //    return 1;
+    //}
     return 0;
 }
 

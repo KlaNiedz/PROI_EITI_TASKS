@@ -132,16 +132,20 @@
     <ClCompile Include="Amount.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Price.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Receipt.cpp" />
     <ClCompile Include="shop.cpp" />
+    <ClCompile Include="Weight.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Amount.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Price.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Receipt.h" />
+    <ClInclude Include="Weight.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
