@@ -8,6 +8,7 @@
 #include "Amount.h"
 #include "Weight.h"
 #include "Price.h"
+#include "HandlingFiles.h"
 #include "../../Zadanie1/Date.h"
 
 
@@ -43,42 +44,48 @@ myCurrency stringToCurrency(const std::string& currencyStr) {
     }
 }
 
-int main(int argc, char* argv[])
+int main()
 {
     try {
+        std::string filename;
+        std::cout << "Pass Filename: ";
+        std::getline(std::cin, filename);
+        HandlingFiles file(filename);
+        std::vector<std::string> arguments = file.createReceipt();
 
-        if (argc < 15) {
+        if (arguments.size() < 10) {
             throw std::invalid_argument("Usage: shop_name shop_day shop_month shop_year eatby_day eatby_month eatby_year amount_price currency amount_number amount_unit product_name product_producer product_number");
 
         }
-
-        std::string shop_name = argv[1];
-        int shop_day = std::stoi(argv[2]);
-        myMonth shop_month = static_cast<myMonth>(std::stoi(argv[3]));
-        int shop_year = std::stoi(argv[4]);
+       
+        std::string shop_name = arguments[0];
+        int shop_day = std::stoi(arguments[1]);
+        myMonth shop_month = static_cast<myMonth>(std::stoi(arguments[2]));
+        int shop_year = std::stoi(arguments[3]);
         Date date_shop(shop_day, shop_month, shop_year);
 
        
         //Creating list of products
         std::vector<Product> products;
-        for (int i = 5; i < argc; i += 10) {
-            int eatby_day = std::stoi(argv[i]);
-            myMonth eatby_month = static_cast<myMonth>(std::stoi(argv[i + 1]));
-            int eatby_year = std::stoi(argv[i+2]);
+        for (int i = 4; i < arguments.size(); i += 10) {
+            int eatby_day = std::stoi(arguments[i]);
+            myMonth eatby_month = static_cast<myMonth>(std::stoi(arguments[i + 1]));
+            int eatby_year = std::stoi(arguments[i+2]);
             Date eatbydate(eatby_day, eatby_month, eatby_year);
-            double price_number = std::stod(argv[i+3]);
-            std::string price_currency = argv[i + 4];
+            double price_number = std::stod(arguments[i+3]);
+            std::cout << price_number << std::endl;
+            std::string price_currency = arguments[i + 4];
             myCurrency converted_currency = stringToCurrency(price_currency);
-            double amount_number = std::stod(argv[i + 5]);
-            std::string amount_unit = argv[i + 6];
+            double amount_number = std::stod(arguments[i + 5]);
+            std::string amount_unit = arguments[i + 6];
             myUnit amount_unit_converted = stringToUnit(amount_unit);
             Weight WeightOfProd(amount_number, amount_unit_converted);
             Price PriceOfProd(price_number, converted_currency);
             Amount amount(PriceOfProd, WeightOfProd);
 
-            std::string product_name = argv[i + 7];
-            std::string product_producer = argv[i + 8];
-            int product_number = std::stoi(argv[i + 9]);
+            std::string product_name = arguments[i + 7];
+            std::string product_producer = arguments[i + 8];
+            int product_number = std::stoi(arguments[i + 9]);
 
             Product product(product_name.c_str(), amount, product_producer, product_number, eatbydate);
             products.push_back(product);
@@ -87,6 +94,7 @@ int main(int argc, char* argv[])
         //Creating a Receipt object and adding product to it
         Receipt receipt(shop_name, date_shop, products);
 
+        std::cout << "Shop: " << shop_name << std::endl;
         std::cout << "Sum of prices: " << receipt.getPriceSum() << std::endl;
         int size = receipt.getNumberOfProducts();
         std::cout << "Number of products bought: " << size << std::endl;

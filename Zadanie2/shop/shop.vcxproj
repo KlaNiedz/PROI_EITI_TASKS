@@ -132,6 +132,7 @@
     <ClCompile Include="Amount.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="HandlingFiles.cpp" />
     <ClCompile Include="Price.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Receipt.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Amount.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="HandlingFiles.h" />
     <ClInclude Include="Price.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Receipt.h" />
