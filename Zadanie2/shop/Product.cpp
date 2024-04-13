@@ -38,6 +38,11 @@ void Product::setProductNumber(int product_number) {
 	ProductNumber = product_number;
 }
 
+bool Product::operator==(const Product& other) const
+{
+	return Name == other.Name;
+}
+
 
 
 std::ostream& operator<<(std::ostream& COUT, Product& product)

@@ -35,9 +35,7 @@ public:
 	int getYear();
 
 	string PrintDate();
-	//void StringDate();
 	bool isValidDate(int day, myMonth month, int year);
-
 	string monthToString(myMonth month);
 	string printWordDate();
 };

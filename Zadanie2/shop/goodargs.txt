@@ -15,10 +15,10 @@ Putka
 22
 10
 2019
-1.90
+10.20
 EUR
 2
-piece
-bread
-Putka
-123
+kg
+grapes
+F&W
+1231234

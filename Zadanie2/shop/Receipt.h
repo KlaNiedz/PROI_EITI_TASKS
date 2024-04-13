@@ -19,7 +19,6 @@ private:
 	std::vector<Product> Products;
 public:
 	Receipt(std::string shop_name, Date date_shop, std::vector<Product>products);
-	//bool isValidReceipt(std::string nazwa_sklepu, int date, std::vector<std::string>produkty);
 	void setShopName(std::string shop_name);
 	std::string getShopName();
 	void addProduct(Product produkt);

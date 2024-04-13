@@ -21,5 +21,6 @@ public:
 	double getNumber();
 	void setCurrency(myCurrency& currency);
 	void setNumber(double number);
+
 };
 

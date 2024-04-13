@@ -26,3 +26,5 @@ void Price::setNumber(double number)
 	Number = number;
 }
 
+
+

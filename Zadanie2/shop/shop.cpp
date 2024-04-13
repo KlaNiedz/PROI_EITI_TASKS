@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <algorithm> 
+#include <vector>
 #include "Receipt.h"
 #include "Product.h"
 #include "Amount.h"
@@ -24,7 +25,7 @@ myUnit stringToUnit(const std::string& unitStr) {
     }
     else {
         // Obsługa nieznanej jednostki lub błąd
-        throw std::invalid_argument("Unknwon unit: " + unitStr);
+        throw std::invalid_argument("Wrong Unit!: " + unitStr + " Available units are 'piece', 'kg' or 'g'.");
     }
 }
 
@@ -67,14 +68,22 @@ int main()
        
         //Creating list of products
         std::vector<Product> products;
+        std::string my_unit;
+        std::vector<std::string> my_products;
         for (int i = 4; i < arguments.size(); i += 10) {
+
             int eatby_day = std::stoi(arguments[i]);
             myMonth eatby_month = static_cast<myMonth>(std::stoi(arguments[i + 1]));
             int eatby_year = std::stoi(arguments[i+2]);
             Date eatbydate(eatby_day, eatby_month, eatby_year);
             double price_number = std::stod(arguments[i+3]);
-            std::cout << price_number << std::endl;
             std::string price_currency = arguments[i + 4];
+            if (i == 4) {
+                my_unit = price_currency;
+            }
+            if (price_currency != my_unit) {
+                throw WrongCurrencyException();
+            }
             myCurrency converted_currency = stringToCurrency(price_currency);
             double amount_number = std::stod(arguments[i + 5]);
             std::string amount_unit = arguments[i + 6];
@@ -82,8 +91,11 @@ int main()
             Weight WeightOfProd(amount_number, amount_unit_converted);
             Price PriceOfProd(price_number, converted_currency);
             Amount amount(PriceOfProd, WeightOfProd);
-
             std::string product_name = arguments[i + 7];
+            int cnt = std::count(arguments.begin(), arguments.end(), arguments[i + 7]);
+            if (cnt > 1) {
+                throw DuplicateProductException();
+            }
             std::string product_producer = arguments[i + 8];
             int product_number = std::stoi(arguments[i + 9]);
 
@@ -113,10 +125,14 @@ int main()
         std::cerr << "Exception: " << e.what() << std::endl;
         return 1;
     }
-    //catch (const WrongUnitException& e) {
-    //    std::cerr << "Exception: " << e.what() << std::endl;
-    //    return 1;
-    //}
+    catch (const WrongUnitException& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        return 1;
+    }
+    catch (const WrongCurrencyException& e) {
+        std::cerr << "Exception: " << e.what() << std::endl;
+        return 1;
+    }
     return 0;
 }
 

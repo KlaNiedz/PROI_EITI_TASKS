@@ -1,11 +1,5 @@
 #include "Weight.h"
 
-//Weight::Weight(double number, myUnit unit)
-//{
-//	Number = number;
-//	Unit = unit;
-//}
-
 Weight::Weight() : Number(0.0), Unit(myUnit::kg) {}
 Weight::Weight(double number, myUnit unit) :Number(number), Unit(unit) {};
 
@@ -37,3 +31,5 @@ std::string Weight::unitToString() {
 		return "Unknown";
 	}
 }
+
+

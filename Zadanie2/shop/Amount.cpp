@@ -5,9 +5,6 @@
 
 
 Amount::Amount(Price price_of_prod, Weight amount_of_prod) {
-	//if (unit != "piece" && unit != "kg" && unit != "g") {
-	//	throw WrongUnitException();
-	//}
 	PriceOfProd = price_of_prod;
 	AmountOfProd = amount_of_prod;
 }

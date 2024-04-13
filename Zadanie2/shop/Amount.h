@@ -3,12 +3,18 @@
 #include "Weight.h"
 #include "Price.h"
 
-//class WrongUnitException : public std::exception {
-//public:
-//	const char* what() const noexcept override {
-//		return "Wrong Unit! Available units are 'piece', 'kg' or 'g'.";
-//	}
-//};
+class WrongUnitException : public std::exception {
+public:
+	const char* what() const noexcept override {
+		return "Wrong Unit! Available units are 'piece', 'kg' or 'g'.";
+	}
+};
+class WrongCurrencyException : public std::exception {
+public:
+	const char* what() const noexcept override {
+		return "Wrong Currency! Use the same currency in whole receipt.";
+	}
+};
 
 
 
@@ -30,9 +36,6 @@ public:
 	void setUnit(myUnit unit);
 
 	double calculatePrice();
-	
-
-	//Amount() = default;
 
 
 };
