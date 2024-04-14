@@ -24,7 +24,6 @@ myUnit stringToUnit(const std::string& unitStr) {
         return myUnit::g;
     }
     else {
-        // Obsługa nieznanej jednostki lub błąd
         throw std::invalid_argument("Wrong Unit!: " + unitStr + " Available units are 'piece', 'kg' or 'g'.");
     }
 }
@@ -40,8 +39,7 @@ myCurrency stringToCurrency(const std::string& currencyStr) {
         return myCurrency::EUR;
     }
     else {
-        // Obsługa nieznanej jednostki lub błąd
-        throw std::invalid_argument("Unknwon currency: " + currencyStr);
+        throw std::invalid_argument("Unknown currency: " + currencyStr);
     }
 }
 
