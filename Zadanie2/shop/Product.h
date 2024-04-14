@@ -22,6 +22,7 @@ public:
 	void setProducer(std::string producer);
 	void setProductNumber(int product_number);
 	friend std::ostream& operator<<(std::ostream& COUT, Product& product);
+	bool operator==(const Product& other) const;
 };
 std::ostream& operator<<(std::ostream& COUT, Product& product);
 

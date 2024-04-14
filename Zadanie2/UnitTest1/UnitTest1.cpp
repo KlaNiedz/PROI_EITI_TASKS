@@ -30,7 +30,9 @@ namespace UnitTest1
 			Date eatbydate(29, myMonth::kwiecien, 2020);
 			std::vector<Product> products;
 			Receipt receipt("Jan", date_shop, products);
-			Amount apple_amount(1.98, 1.5, "kg");
+			Weight weight_apple(1.5, myUnit::kg);
+			Price apple_price(1.98, myCurrency::PLN);
+			Amount apple_amount(apple_price, weight_apple);
 			Product apple("apple", apple_amount, "biedronka", 23, eatbydate);
 			receipt.addProduct(apple);
 			std::string element = receipt.getProducts().back().getName();
@@ -38,27 +40,34 @@ namespace UnitTest1
 		}
 		TEST_METHOD(TestAmountInit)
 		{
-			Amount bread_amount(5.20, 2, "piece");
-			double bread_price = 5.20;
+			Weight bread_weight(2, myUnit::piece);
+			Price bread_price(5.20, myCurrency::PLN);
+			Amount bread_amount(bread_price, bread_weight);
+			double bread_price_check = 5.20;
 			double bread_number = 2;
 			std::string bread_unit = "piece";
-			Assert::AreEqual(bread_amount.getPrice(), bread_price);
+			std::string changed_bread_unit = bread_amount.getWeight().unitToString();
+			Assert::AreEqual(bread_amount.getPrice(), bread_price_check);
 			Assert::AreEqual(bread_amount.getNumber(), bread_number);
-			Assert::AreEqual(bread_amount.getUnit(), bread_unit);
+			Assert::AreEqual(changed_bread_unit, bread_unit);
 		}
 		TEST_METHOD(TestCalculatePrice)
 		{
-			Amount bread_amount(5.20, 2, "piece");
+			Weight bread_weight(2, myUnit::piece);
+			Price bread_price(5.20, myCurrency::PLN);
+			Amount bread_amount(bread_price, bread_weight);
 			double price = 10.40;
 			Assert::AreEqual(bread_amount.calculatePrice(), price);
 		}
 		TEST_METHOD(TestProductInit)
 		{
 			Date eatbydate(29, myMonth::kwiecien, 2020);
-			Amount apple_amount(1.98, 1.5, "kg");
+			Weight apple_weight(2, myUnit::kg);
+			Price apple_price(1.98, myCurrency::PLN);
+			Amount apple_amount(apple_price, apple_weight);
 			Product apple("apple", apple_amount, "biedronka", 23, eatbydate);
 			std::string name = "apple";
-			double price = 1.98 * 1.5;
+			double price = 1.98 * 2;
 			std::string producer = "biedronka";
 			Assert::AreEqual(apple.getName(), name);
 			Assert::AreEqual(apple.getPrice(), price);
@@ -71,9 +80,13 @@ namespace UnitTest1
 			Date eatbydate2(22, myMonth::kwiecien, 2020);
 			std::vector<Product> products;
 			Receipt Receipt("Jan", date_shop, products);
-			Amount bread_amount(5.20, 2, "piece");
+			Weight bread_weight(2, myUnit::piece);
+			Price bread_price(5.20, myCurrency::PLN);
+			Amount bread_amount(bread_price, bread_weight);
 			Product bread("bread", bread_amount, "goszczynski", 72, eatbydate1);
-			Amount apple_amount(1.98, 1.5, "kg");
+			Weight apple_weight(2, myUnit::kg);
+			Price apple_price(1.98, myCurrency::PLN);
+			Amount apple_amount(apple_price, apple_weight);
 			Product apple("apple", apple_amount, "biedronka", 23, eatbydate2);
 			Receipt.addProduct(bread);
 			Receipt.addProduct(apple);
@@ -86,7 +99,9 @@ namespace UnitTest1
 			Date eatbydate(29, myMonth::kwiecien, 2020);
 			std::vector<Product> products;
 			Receipt Receipt("Jan", date_shop, products);
-			Amount apple_amount(1.98, 1.5, "kg");
+			Weight apple_weight(2, myUnit::kg);
+			Price apple_price(1.98, myCurrency::PLN);
+			Amount apple_amount(apple_price, apple_weight);
 			Product apple("apple", apple_amount, "biedronka", 23, eatbydate);
 			Receipt.addProduct(apple);
 			std::string spec_prod = Receipt.getSpecificProduct("apple");

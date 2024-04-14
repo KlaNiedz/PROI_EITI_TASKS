@@ -1,40 +1,45 @@
 #include "Amount.h"
 #include "Product.h"
+#include "Weight.h"
+#include "Price.h"
 
-Amount::Amount(double price, double number, std::string unit) {
-	if (unit != "piece" && unit != "kg" && unit != "g") {
-		throw WrongUnitException();
-	}
-	Price = price;
-	Number = number;
-	Unit = unit;
+
+Amount::Amount(Price price_of_prod, Weight amount_of_prod) {
+	PriceOfProd = price_of_prod;
+	AmountOfProd = amount_of_prod;
+}
+Amount::Amount() : PriceOfProd(0.0, myCurrency::PLN), AmountOfProd(0.0, myUnit::kg) {}
+
+Weight Amount::getWeight() {
+	return AmountOfProd;
 }
 
 double Amount::getPrice() {
-	return Price;
+	return PriceOfProd.getNumber();
 }
 
 double Amount::getNumber() {
-	return Number;
+	return AmountOfProd.getNumber();
 }
 
-std::string Amount::getUnit() {
-	return Unit;
+myUnit Amount::getUnit() {
+	return AmountOfProd.getUnit();
 }
 
 void Amount::setPrice(double price) {
-	Price = price;
+	PriceOfProd.setNumber(price);
 }
 
 void Amount::setNumber(double number) {
-	Number = number;
+	AmountOfProd.setNumber(number);
 }
 
-void Amount::setUnit(std::string unit) {
-	Unit = unit;
+void Amount::setUnit(myUnit unit) {
+	AmountOfProd.setUnit(unit);
 }
 
 double Amount::calculatePrice() {
-	return Price * Number;
+	return PriceOfProd.getNumber() * AmountOfProd.getNumber();
 
 }
+

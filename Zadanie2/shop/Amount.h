@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "Weight.h"
+#include "Price.h"
 
 class WrongUnitException : public std::exception {
 public:
@@ -7,24 +9,33 @@ public:
 		return "Wrong Unit! Available units are 'piece', 'kg' or 'g'.";
 	}
 };
+class WrongCurrencyException : public std::exception {
+public:
+	const char* what() const noexcept override {
+		return "Wrong Currency! Use the same currency in whole receipt.";
+	}
+};
+
+
 
 class Amount
 {
 private:
-	double Price;
-	double Number;
-	std::string Unit;
+	Price PriceOfProd;
+	Weight AmountOfProd;
 public:
-
-	Amount(double price, double number, std::string unit);
+	Amount(Price price_of_prod, Weight amount_of_prod);
+	Amount();
+	Weight getWeight();
 	double getPrice();
 	double getNumber();
-	std::string getUnit();
+	myUnit getUnit();
+
 	void setPrice(double price);
 	void setNumber(double number);
-	void setUnit(std::string);
+	void setUnit(myUnit unit);
 
 	double calculatePrice();
 
-	Amount() = default;
+
 };
