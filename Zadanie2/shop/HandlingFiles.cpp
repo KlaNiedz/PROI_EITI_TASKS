@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "Receipt.h"
 
 HandlingFiles::HandlingFiles(std::string filename)
 {
@@ -27,6 +28,19 @@ std::vector<std::string> HandlingFiles::createReceipt()
 		}
 		myFile.close();
 		return myArgs;
+	}
+}
+
+
+void HandlingFiles::saveReceipt(const std::string& filename, Receipt my_receipt) {
+	std::ofstream file(filename); // Open the file for writing
+	if (file.is_open()) {
+		file << my_receipt.getDescription();
+		file.close(); // Close the file
+		std::cout << "Description saved to file: " << filename << std::endl;
+	}
+	else {
+		std::cerr << "Unable to open file: " << filename << std::endl;
 	}
 }
 

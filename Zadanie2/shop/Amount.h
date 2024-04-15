@@ -26,8 +26,9 @@ private:
 public:
 	Amount(Price price_of_prod, Weight amount_of_prod);
 	Amount();
-	Weight getWeight();
-	double getPrice();
+	Weight getWeight() const;
+	double getPrice() const;
+	Price getPriceClass() const;
 	double getNumber();
 	myUnit getUnit();
 
@@ -36,6 +37,7 @@ public:
 	void setUnit(myUnit unit);
 
 	double calculatePrice();
-
+	friend std::ostream& operator<<(std::ostream& os, const Amount& amount);
 
 };
+std::ostream& operator<<(std::ostream& os, const Amount& amount);

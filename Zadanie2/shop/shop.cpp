@@ -74,6 +74,9 @@ int main()
             int eatby_year = std::stoi(arguments[i+2]);
             Date eatbydate(eatby_day, eatby_month, eatby_year);
             double price_number = std::stod(arguments[i+3]);
+            //Price price;
+            //std::cout << "Please enter price and currency of the product. Available currencies are 1.PLN, 2.EUR, 3.USD. To choose currency write number from 1 to 3: ";
+            //std::cin >> price;
             std::string price_currency = arguments[i + 4];
             if (i == 4) {
                 my_unit = price_currency;
@@ -88,6 +91,7 @@ int main()
             Weight WeightOfProd(amount_number, amount_unit_converted);
             Price PriceOfProd(price_number, converted_currency);
             Amount amount(PriceOfProd, WeightOfProd);
+            //Amount amount(price, WeightOfProd);
             std::string product_name = arguments[i + 7];
             std::string product_producer = arguments[i + 8];
             int product_number = std::stoi(arguments[i + 9]);
@@ -115,6 +119,12 @@ int main()
         for (Product element : receipt.getProducts()) {
             std::cout << element << std::endl;
         }
+        
+        std::string filename2;
+        std::cout << "Pass file name to save: " << std::endl;
+        std::getline(std::cin, filename2);
+        HandlingFiles file2(filename2);
+        file2.saveReceipt(filename2, receipt);
 
     }
     catch (const std::invalid_argument& e) {

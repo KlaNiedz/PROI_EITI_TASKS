@@ -13,20 +13,21 @@ private:
 	int ProductNumber;
 	Date EatByDate;
 public:
-	Product(const char* name, Amount prices, std::string producer, int product_number, Date eatbydate);
+	Product(std::string name, Amount prices, std::string producer, int product_number, Date eatbydate);
 	std::string getName() const;
 	Amount getAmount() const;
 	std::string getProducer() const;
+	Date getDate();
 	int getProductNumber() const;
 	double getPrice();
 	void setName(std::string name);
 	void setProducer(std::string producer);
 	void setProductNumber(int product_number);
-	bool findDuplicate(Product product, std::vector<Product> products);
-	friend std::ostream& operator<<(std::ostream& COUT, Product& product);
+	bool findDuplicate(const Product product, std::vector<Product> products) const;
+	friend std::ostream& operator<<(std::ostream& os, Product& product);
 };
 
-bool operator==(const Product& prod, const Product& other);
+bool operator==(Product& prod,  Product& other);
 
-std::ostream& operator<<(std::ostream& COUT, Product& product);
+std::ostream& operator<<(std::ostream& os, Product& product);
 
