@@ -74,3 +74,4 @@ double Receipt::getPriceSum() {
 	}
 	return sum;
 }
+
