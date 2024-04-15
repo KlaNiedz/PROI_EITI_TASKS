@@ -67,7 +67,6 @@ int main()
         //Creating list of products
         std::vector<Product> products;
         std::string my_unit;
-        std::vector<std::string> my_products;
         for (int i = 4; i < arguments.size(); i += 10) {
 
             int eatby_day = std::stoi(arguments[i]);
@@ -90,17 +89,20 @@ int main()
             Price PriceOfProd(price_number, converted_currency);
             Amount amount(PriceOfProd, WeightOfProd);
             std::string product_name = arguments[i + 7];
-            int cnt = std::count(arguments.begin(), arguments.end(), arguments[i + 7]);
-            if (cnt > 1) {
-                throw DuplicateProductException();
-            }
             std::string product_producer = arguments[i + 8];
             int product_number = std::stoi(arguments[i + 9]);
 
             Product product(product_name.c_str(), amount, product_producer, product_number, eatbydate);
-            products.push_back(product);
-        }
 
+            if (!(product.findDuplicate(product, products))) {
+                products.push_back(product);
+            }
+            else {
+                throw DuplicateProductException();
+            }
+            
+        }
+        
         //Creating a Receipt object and adding product to it
         Receipt receipt(shop_name, date_shop, products);
 

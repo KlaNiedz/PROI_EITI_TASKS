@@ -25,6 +25,6 @@ public:
 	std::vector<Product> getProducts();
 	int getNumberOfProducts();
 	std::string getSpecificProduct(std::string product);
-	void deleteProduct(std::string produkt);
+	void deleteProduct(std::string product);
 	double getPriceSum();
 };

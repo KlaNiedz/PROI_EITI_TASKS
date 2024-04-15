@@ -12,8 +12,8 @@ piece
 bread
 Putka
 123
-22
-10
+2
+7
 2019
 1.90
 EUR
