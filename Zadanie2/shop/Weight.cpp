@@ -3,7 +3,7 @@
 Weight::Weight() : Number(0.0), Unit(myUnit::kg) {}
 Weight::Weight(double number, myUnit unit) :Number(number), Unit(unit) {};
 
-double Weight::getNumber() {
+double Weight::getNumber() const{
 	return Number;
 }
 
@@ -19,7 +19,7 @@ void Weight::setUnit(myUnit unit) {
 	Unit = unit;
 }
 
-std::string Weight::unitToString() {
+ std::string Weight::unitToString() const {
 	switch (Unit) {
 	case myUnit::kg:
 		return "kg";
@@ -32,4 +32,8 @@ std::string Weight::unitToString() {
 	}
 }
 
-
+ std::ostream& operator<<(std::ostream& os, const Weight& weight)
+ {
+	 os << weight.getNumber() << weight.unitToString() << std::endl;
+	 return os;
+ }

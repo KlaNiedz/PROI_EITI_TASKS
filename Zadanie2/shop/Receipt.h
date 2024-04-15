@@ -27,4 +27,5 @@ public:
 	std::string getSpecificProduct(std::string product);
 	void deleteProduct(std::string product);
 	double getPriceSum();
+	std::string getDescription();
 };

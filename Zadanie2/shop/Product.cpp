@@ -5,7 +5,7 @@
 #include "Price.h"
 //#include "../../../Zadanie1/date_setter.cpp/date_setter.cpp/Date.h"
 
-Product::Product(const char* name, Amount prices, std::string producer, int product_number, Date eatbydate) {
+Product::Product(std::string name, Amount prices, std::string producer, int product_number, Date eatbydate) {
 	Name = name;
 	Prices = prices;
 	Producer = producer;
@@ -20,16 +20,20 @@ Amount Product::getAmount() const {
 	return Prices;
 }
 
-std::string Product::getProducer() const {
+std::string Product::getProducer()  const{
 	return Producer;
 }
 
-int Product::getProductNumber() const {
+int Product::getProductNumber()  const{
 	return ProductNumber;
 }
 
 double Product::getPrice() {
 	return Prices.calculatePrice();
+}
+
+Date Product::getDate() {
+	return EatByDate;
 }
 
 void Product::setName(std::string name) {
@@ -46,13 +50,13 @@ void Product::setProductNumber(int product_number) {
 }
 
 
-bool operator==(const Product& prod,const Product& other)
+bool operator==(const Product& prod, const Product& other)
 {
 	return ((prod.getName() == other.getName()) && (prod.getAmount().getNumber() == other.getAmount().getNumber())&&(prod.getAmount().getPrice() == other.getAmount().getPrice())
 		&&(prod.getAmount().getUnit() == other.getAmount().getUnit()));
 }
 
-bool Product::findDuplicate(Product my_product, std::vector<Product> products) {
+bool Product::findDuplicate(const Product my_product, std::vector<Product> products) const {
 	auto it = std::find_if(products.begin(), products.end(), [my_product](const Product& p) {
 		return p == my_product;
 		});
@@ -64,14 +68,15 @@ bool Product::findDuplicate(Product my_product, std::vector<Product> products) {
 }
 
 
-std::ostream& operator<<(std::ostream& COUT, Product& product)
+
+std::ostream& operator<<(std::ostream& os, Product& product)
 {
-	COUT << "Name of product: " << product.Name << std::endl;
-	COUT << "Price of product: " << product.getPrice() << std::endl;
-	COUT << "Producer: " << product.Producer << std::endl;
-	COUT << "Produkt number: " << product.ProductNumber << std::endl;
-	COUT << "Expiry date: " << product.EatByDate.PrintDate() << std::endl;
-	COUT << "Amount of product: " << product.Prices.getNumber() << product.Prices.getWeight().unitToString() << std::endl;
-	COUT << "Price for " << product.Prices.getWeight().unitToString() << ": " << product.Prices.getPrice() << std::endl;
-	return COUT;
+	os << "Name of product: " << product.Name << std::endl;
+	os << "Summary price: " << product.getPrice() << std::endl;
+	os << "Producer: " << product.Producer << std::endl;
+	os << "Produkt number: " << product.ProductNumber << std::endl;
+	os << "Expiry date: " << product.EatByDate.PrintDate() << std::endl;
+	os << "Amount of product: " << product.Prices.getNumber() << product.Prices.getWeight().unitToString() << std::endl;
+	os << "Price for " << product.Prices.getWeight().unitToString() << ": " << product.Prices.getPriceClass() << std::endl;
+	return os;
 }

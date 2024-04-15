@@ -4,6 +4,8 @@
 #include <typeinfo>
 #include <algorithm>
 #include <array>
+#include <iomanip> 
+#include <sstream> 
 #include "../../Zadanie1/Date.h"
 #include "Product.h"
 
@@ -53,7 +55,7 @@ std::string Receipt::getSpecificProduct(std::string product) {
 
 
 void Receipt::deleteProduct(std::string product) {
-	auto it = std::find_if(Products.begin(), Products.end(), [&product](const Product& p) {
+	auto it = std::find_if(Products.begin(), Products.end(), [&product]( Product& p) {
 		return p.getName() == product;
 		});
 
@@ -73,5 +75,23 @@ double Receipt::getPriceSum() {
 
 	}
 	return sum;
+
+}
+std::string doubleToString(double value, int precision = 2) {
+	std::stringstream stream;
+	stream << std::fixed << std::setprecision(precision) << value;
+	return stream.str();
 }
 
+std::string Receipt::getDescription()
+{
+std:string desc = ShopName + "\n" + DateShop.PrintDate() + "\n";
+	for (int i = 0; i < Products.size(); i++) {
+		desc += Products[i].getName() + "\n" + doubleToString(Products[i].getPrice()) + "\n" + Products[i].getProducer() + "\n" + doubleToString(Products[i].getProductNumber()) + "\n" +
+			Products[i].getDate().PrintDate() + "\n" + doubleToString(Products[i].getPrice())+ Products[i].getAmount().getPriceClass().currencyToString() + "\n" + doubleToString(Products[i].getAmount().getNumber()) +
+			Products[i].getAmount().getWeight().unitToString() + "\n" + "Price for " + Products[i].getAmount().getWeight().unitToString() + ": " + doubleToString((Products[i].getAmount().getPrice())) +
+			Products[i].getAmount().getPriceClass().currencyToString() + "\n";
+	}
+	return desc;
+		
+}
