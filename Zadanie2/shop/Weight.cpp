@@ -7,7 +7,8 @@ double Weight::getNumber() const{
 	return Number;
 }
 
-myUnit Weight::getUnit() {
+myUnit Weight::getUnit() const
+{
 	return Unit;
 }
 

@@ -9,7 +9,7 @@ Date::Date(int day, myMonth month, int year) {
 		Year = year;
 	}
 	else {
-		std::cout << "Invalid date" << std::endl;
+		std::cout << "Invalid date" << std::endl; // w zad.3 ju¿ nie tak
 	}
 }
 

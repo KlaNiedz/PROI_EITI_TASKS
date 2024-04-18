@@ -123,7 +123,8 @@ int main()
         std::string filename2;
         std::cout << "Pass file name to save: " << std::endl;
         std::getline(std::cin, filename2);
-        HandlingFiles file2(filename2);
+
+    	HandlingFiles file2(filename2);
         file2.saveReceipt(filename2, receipt);
 
     }

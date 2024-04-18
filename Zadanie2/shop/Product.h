@@ -25,6 +25,7 @@ public:
 	void setProductNumber(int product_number);
 	bool findDuplicate(const Product product, std::vector<Product> products) const;
 	friend std::ostream& operator<<(std::ostream& os, Product& product);
+	// operator>> 
 };
 
 bool operator==(Product& prod,  Product& other);

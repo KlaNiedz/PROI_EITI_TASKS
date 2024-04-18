@@ -10,7 +10,10 @@ HandlingFiles::HandlingFiles(std::string filename)
 	Filename = filename;
 }
 
-std::vector<std::string> HandlingFiles::createReceipt()
+std::vector<std::string> HandlingFiles::createReceipt() // file to string_Vect ??
+// lepiej do stringstream
+//  	std::stringstream file_buf;
+//    file_buf << file.rdbuf();
 {
 	std::fstream myFile;
 	myFile.open(Filename, std::ios::in);
