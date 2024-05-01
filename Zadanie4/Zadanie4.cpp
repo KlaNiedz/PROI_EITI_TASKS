@@ -29,7 +29,7 @@ int main()
 
 
     //std::cout << "Name of the element: " << element->getName() << std::endl;
-    data.draw_to_svg("dupa.html");
+    data.draw_to_svg("data.html");
     
  
  
