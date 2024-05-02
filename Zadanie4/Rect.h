@@ -10,7 +10,7 @@ private:
 	int x;
 	int y;
 public:
-	Rect(const std::string& name, int width, int height, const std::string& fill, std::string stroke, int x, int y);
+	Rect(int width = 0, int height = 0, const std::string& fill = "none", std::string stroke = "none", int x = 0, int y = 0);
 	std::string to_svg() override;
 };
 

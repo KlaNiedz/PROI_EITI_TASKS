@@ -6,8 +6,9 @@ private:
 	int cy;
 	int r;
 public:
-	Circle(const std::string& name, const std::string& fill, int cx, int cy, int r);
+	Circle(const std::string& fill = "none", int cx = 0, int cy = 0, int r = 0);
 	std::string to_svg() override;
-	/*std::string getName() const override;*/
+	int getR();
+	
 };
 
