@@ -3,7 +3,7 @@
 #include <string>
 
 
-Circle::Circle(const std::string& fill, int cx, int cy, int r) : Element( fill), cx(cx), cy(cy), r(r) 
+Circle::Circle(const std::string& name, const std::string& fill, int cx, int cy, int r) : Element(name, fill), cx(cx), cy(cy), r(r)
 {
 	if (r <= 0 || fill.empty()) {
 		std::cerr << "Error: Incorrect arguments for Circle constructor. Object creation skipped." << std::endl;

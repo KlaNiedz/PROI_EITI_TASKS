@@ -2,8 +2,8 @@
 #include <iostream>
 
 
-Rect::Rect(int width, int height, const std::string& fill, std::string stroke, int x, int y) :
-	Element(fill), width(width), height(height), stroke(stroke), x(x), y(y) 
+Rect::Rect(const std::string& name, int width, int height, const std::string& fill, std::string stroke, int x, int y) :
+	Element(name, fill), width(width), height(height), stroke(stroke), x(x), y(y) 
 {
     if (width <= 0 || height <= 0 || fill.empty()) {
         std::cerr << "Error: Incorrect arguments for Rect constructor. Object creation skipped." << std::endl;
